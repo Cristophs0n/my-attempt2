@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Hero } from './hero';
 
 @Component({
   selector: 'my-app',
@@ -58,18 +59,11 @@ import { Component } from '@angular/core';
       <li *ngFor="let hero of heroes" (click)="onSelect(hero)">
       <span class="badge">{{hero.id}}</span> {{hero.name}}
       </li>
-    </ul>
-  
+    </ul> 
   </div>
-
   <hr />
 
-  <div id="heroDetails" *ngIf="selectedHero">
-    <h3>{{selectedHero.name}} details:</h3>
-    <p><label>ID: </label>{{selectedHero.id}}</p>
-    <p><label>Name: </label>{{selectedHero.name}}</p>
-    <input [(ngModel)]="selectedHero.name" placeholder="name">
-  </div>
+  <hero-detail [selectedHero]="selectedHero"></hero-detail>
   
   `,
 })
@@ -81,19 +75,21 @@ export class AppComponent  {
   name = 'Windstorm';
 
   heroes = [
-    {id: 11, name: "chris"},
-    {id: 12, name: "catherine"},
-    {id: 13, name: "Rose"}
+    {id: 11, name: "Chris"},
+    {id: 12, name: "Catherine"},
+    {id: 13, name: "Rose"},
+    {id: 14, name: "Superman"},
+    {id: 15, name: "Batman"},
+    {id: 16, name: "Spiderman"},
+    {id: 17, name: "Wonderwoman"},
+    {id: 18, name: "Hulk"},
+    {id: 19, name: "Mr. Fantastic"},
+    {id: 20, name: "Ironman"},
   ]
 
-  selectedHero: object;
+  selectedHero: Hero;
 
-  onSelect(hero) {
+  onSelect(hero: Hero) : void {
     this.selectedHero = hero;
   }
-}
-
-export class Hero {
-  id: number;
-  name: string;
 }
